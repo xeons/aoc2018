@@ -16,38 +16,47 @@ namespace AoC2018.Solutions
         public override void Run()
         {
             string[] input = File.ReadAllLines(Path.Combine("Input", "Day1Input.txt"));
-            Dictionary<int, int> frequencyOccurrences = new Dictionary<int, int>();
-            int part1Result = 0, part2Result = 0;
-            bool part2Flag = false;
+
+            Console.WriteLine($"Part 1 Result: {CalculatePart1(input)}");
+            Console.WriteLine($"Part 2 Result: {CalculatePart2(input)}");
+        }
+
+        public int CalculatePart1(string[] input)
+        {
+            int sum = 0;
 
             for (var i = 0; i < input.Length; i++)
-            {
-                part1Result += int.Parse(input[i]);
-            }
-            Console.WriteLine($"Part 1 Result: {part1Result}");
+                sum += int.Parse(input[i]);
 
-            part1Result = 0;
-            while (!part2Flag)
+            return sum;
+        }
+
+        public int CalculatePart2(string[] input)
+        {
+            Dictionary<int, int> frequencyOccurrences = new Dictionary<int, int>();
+            int sum = 0, result = 0;
+            bool foundResult = false;
+
+            frequencyOccurrences.Add(0, 1);
+            while (!foundResult)
             {
-                for (var i = 0; i < input.Length; i++)
+                foreach (var s in input)
                 {
-                    part1Result += int.Parse(input[i]);
+                    sum += int.Parse(s);
 
-                    if (!frequencyOccurrences.ContainsKey(part1Result))
-                        frequencyOccurrences.Add(part1Result, 0);
+                    if (!frequencyOccurrences.ContainsKey(sum))
+                        frequencyOccurrences.Add(sum, 0);
 
-                    frequencyOccurrences[part1Result]++;
-
-                    if (frequencyOccurrences[part1Result] > 1)
+                    if (++frequencyOccurrences[sum] > 1)
                     {
-                        part2Flag = true;
-                        part2Result = part1Result;
+                        foundResult = true;
+                        result = sum;
                         break;
                     }
                 }
             }
 
-            Console.WriteLine($"Part 2 Result: {part2Result}");
+            return result;
         }
     }
 }
