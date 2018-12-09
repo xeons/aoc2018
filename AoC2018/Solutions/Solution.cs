@@ -8,7 +8,6 @@ namespace AoC2018.Solutions
     {
         public abstract string Title { get; }
         public abstract int Day { get; }
-
         public abstract void Run();
     }
 }
