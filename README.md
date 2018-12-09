@@ -2,7 +2,13 @@
 
 ## About
 
-These are my solutions to the Advent of Code 2018.
+These are my solutions to the Advent of Code 2018. 
+
+All of solutions are written in C#. I'm also attempting to write 
+unit tests for each of the solutions.
+
+I am targeting .NET Core 2.1. This project should be cross-platform
+compatible.
 
 ## Author
 
